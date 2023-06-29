@@ -1,4 +1,4 @@
-package com.xworkz.hosapp;
+package com.xworkz.hospitalapp.hosapp;
 
 import com.xworkz.hospitalapp.patient.Patient;
 
@@ -18,7 +18,7 @@ public interface Hospital {
 
     String[] getPatientNameByDiseaseName(String diseaseName);
 
-    boolean updatePatientAgeByPatientId( int existingPatientId);
+    boolean updatePatientAgeByPatientId( int existingPatientId, int patientAge);
 
     String getPatientAttenderNameByPatientId(int patientId);
 

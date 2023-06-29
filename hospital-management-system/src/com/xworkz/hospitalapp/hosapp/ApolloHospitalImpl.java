@@ -1,8 +1,6 @@
-package com.xworkz.hosapp;
+package com.xworkz.hospitalapp.hosapp;
 
-import com.xworkz.address.Address;
 import com.xworkz.hospitalapp.patient.Patient;
-import lombok.Data;
 
 
 public class ApolloHospitalImpl implements Hospital{
@@ -121,22 +119,35 @@ public class ApolloHospitalImpl implements Hospital{
     public String[] getPatientNameByDiseaseName(String diseaseName) {
         System.out.println("invoking getPatientNameByDiseaseName");
 
+        int count=0;
+        for (Patient pat:patient
+             ) {
+            if(pat.getDiseaseName().equals(diseaseName)){
+                count++;
+            }
+        }
+
+        String patientNames[]=new String[count];
+        int index=0;
         for (Patient pat : patient
         ) {
             if (pat.getDiseaseName().equals(diseaseName)) {
-                System.out.println("patient name is" + pat.getPatientName());
+                patientNames[index++]=pat.getPatientName();
+              System.out.println(patientNames[index++]);
             }
         }
-        return null;
+        return patientNames;
     }
 
     @Override
-    public boolean updatePatientAgeByPatientId( int existingPatientId) {
+    public boolean updatePatientAgeByPatientId( int existingPatientId, int patientAge) {
         System.out.println("updatePatientAgeByPatientId method");
         boolean isUpdated = false;
         for (Patient pat : patient
         ) {
             if (pat.getId() == existingPatientId) {
+                pat.setAge(patientAge);
+                System.out.println(pat.getAge());
                 isUpdated = true;
                 System.out.println("patient age is updated");
             }

@@ -1,4 +1,4 @@
-package com.xworkz.address;
+package com.xworkz.hospitalapp.address;
 
 import lombok.Data;
 

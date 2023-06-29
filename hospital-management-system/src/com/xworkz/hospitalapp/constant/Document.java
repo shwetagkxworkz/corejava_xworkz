@@ -1,4 +1,4 @@
-package com.xworkz.constant;
+package com.xworkz.hospitalapp.constant;
 
 public enum Document {
 

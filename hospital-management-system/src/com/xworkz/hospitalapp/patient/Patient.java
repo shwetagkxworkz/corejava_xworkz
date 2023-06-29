@@ -1,8 +1,7 @@
 package com.xworkz.hospitalapp.patient;
 
-import com.xworkz.address.Address;
-import com.xworkz.constant.Document;
-import com.xworkz.constant.Gender;
+import com.xworkz.hospitalapp.address.Address;
+import com.xworkz.hospitalapp.constant.Gender;
 import lombok.*;
 
 @Setter
