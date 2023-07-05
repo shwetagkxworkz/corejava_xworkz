@@ -1,5 +1,9 @@
 package com.xworkz.hospitalapp.hosapp;
 
+import com.xworkz.hospitalapp.exception.PatientAttenderNameNotFoundException;
+import com.xworkz.hospitalapp.exception.PatientNameNotFoundException;
+import com.xworkz.hospitalapp.exception.PatientNotFoundException;
+import com.xworkz.hospitalapp.exception.StreetNameNotFoundException;
 import com.xworkz.hospitalapp.patient.Patient;
 
 
@@ -68,17 +72,20 @@ public class ApolloHospitalImpl implements Hospital{
 
     @Override
     public String getPatientNameByWardNo(String wardNo) {
+        String patientName=null;
         System.out.println("invoked getPatientNameByWardNo method");
         if(wardNo!=null && !wardNo.isEmpty()){
             for(int i=0;i<this.patient.length;i++){
                 if(this.patient[i].getWardNo().equals(wardNo)){
                     System.out.println("patient name" + this.patient[i].getPatientName());
                 }
+                else{
+                    PatientNameNotFoundException exception=new PatientNameNotFoundException(wardNo);
+                    throw exception;
+                }
             }
-        } else{
-            System.out.println("invalid ward no");
         }
-        return null;
+        return patientName;
     }
 
     @Override
@@ -163,12 +170,18 @@ public class ApolloHospitalImpl implements Hospital{
             if (pat.getId()==patientId){
                 System.out.println("patient attender name is" + pat.getAttenderName());
             }
+            else{
+                PatientAttenderNameNotFoundException exception=new PatientAttenderNameNotFoundException(patientId);
+                throw exception;
+            }
         }
         return null;
     }
 
     @Override
     public Patient getPatientById(int patientId) {
+        System.out.println("invoking getPatientById method");
+        Patient patient1=null;
       int index=0 ;
         for (Patient pat:patient
              ) {
@@ -177,8 +190,12 @@ public class ApolloHospitalImpl implements Hospital{
                index++;
                 System.out.println(patient[index]);
             }
+            else{
+                PatientNotFoundException exception=new PatientNotFoundException(patientId);
+                throw exception;
+            }
         }
-        return null;
+        return patient1;
     }
 
     @Override
@@ -188,6 +205,10 @@ public class ApolloHospitalImpl implements Hospital{
              ) {
             if(pat.getId()==existingPatientId){
                 System.out.println("street name is " + pat.getAddress().getCountry().getState().getCity().getArea().getStreet());
+            }
+            else {
+                StreetNameNotFoundException exception=new StreetNameNotFoundException(existingPatientId);
+                throw exception;
             }
         }
 

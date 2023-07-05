@@ -3,6 +3,9 @@ package com.xworkz.ecommerceapp;
 import com.xworkz.ecommerceapp.app.EcommerceApp;
 import com.xworkz.ecommerceapp.app.FlipkartImpl;
 import com.xworkz.ecommerceapp.customer.Customer;
+import com.xworkz.ecommerceapp.exception.ContactNoNotFoundException;
+import com.xworkz.ecommerceapp.exception.CustomerNameNotFoundException;
+import com.xworkz.ecommerceapp.exception.EmailIdNotFoundException;
 
 import java.util.Scanner;
 
@@ -33,6 +36,7 @@ public class Tester {
             System.out.println("3: update email id by customer id");
             System.out.println("4: get contact no by customer name");
             System.out.println("5: update customer name by customer id");
+            System.out.println("6: get email id by customer name");
 
             System.out.println("enter the option");
             int option = sc.nextInt();
@@ -45,7 +49,11 @@ public class Tester {
 
                 case 2:
                     System.out.println("enter the existing id");
-                    app.getCustomerNameById(sc.nextInt());
+                    try {
+                        app.getCustomerNameById(sc.nextInt());
+                    }catch (CustomerNameNotFoundException e){
+                        e.printStackTrace();
+                    }
                     break;
 
                 case 3:
@@ -55,7 +63,11 @@ public class Tester {
 
                 case 4:
                     System.out.println("enter the customer name");
-                    app.getContactNoByCustomerName(sc.next());
+                    try {
+                        app.getContactNoByCustomerName(sc.next());
+                    }catch (ContactNoNotFoundException e){
+                        e.printStackTrace();
+                    }
                     break;
 
                 case 5:
@@ -63,6 +75,15 @@ public class Tester {
                     System.out.println("enter new name");
                     app.updateCustomerNameByCustomerId(sc.nextInt(), sc.next());
                   //  app.getCustomerDetails();
+                    break;
+
+                case 6:
+                    System.out.println("enter customer name");
+                    try {
+                        app.getEmailIdByCustomerName(sc.next());
+                    }catch (EmailIdNotFoundException e){
+                        e.printStackTrace();
+                    }
                     break;
             }
             System.out.println("do you want to continue : y/n");

@@ -11,4 +11,5 @@ public interface EcommerceApp {
     boolean updateEmailIdByCustomerId(int existingId, String updatedEmailId);
     long getContactNoByCustomerName(String existingName);
     boolean updateCustomerNameByCustomerId(int existingId, String updatedName);
+    String getEmailIdByCustomerName(String customerName);
 }

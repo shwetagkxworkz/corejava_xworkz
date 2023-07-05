@@ -3,6 +3,10 @@ package com.xworkz.hospitalapp.patient;
 //import com.xworkz.address;
 import com.xworkz.hospitalapp.address.*;
 import com.xworkz.hospitalapp.constant.Gender;
+import com.xworkz.hospitalapp.exception.PatientAttenderNameNotFoundException;
+import com.xworkz.hospitalapp.exception.PatientNameNotFoundException;
+import com.xworkz.hospitalapp.exception.PatientNotFoundException;
+import com.xworkz.hospitalapp.exception.StreetNameNotFoundException;
 import com.xworkz.hospitalapp.hosapp.ApolloHospitalImpl;
 import com.xworkz.hospitalapp.hosapp.Hospital;
 import com.xworkz.hospitalapp.patient.Patient;
@@ -104,8 +108,13 @@ public class Tester {
                     break;
 
                 case 3:System.out.println("enter ward no to find patient name");
+                try {
                     hospital.getPatientNameByWardNo(sc.next());
-                    break;
+                }catch (PatientNameNotFoundException e){
+                    e.printStackTrace();
+                }
+
+                break;
 
                 case 4:System.out.println("enter the disease name to get patient name");
                     hospital.getPatientNameByDiseaseName(sc.next());
@@ -125,14 +134,28 @@ public class Tester {
                     break;
 
                 case 8:System.out.println("enter patient id to get attender name");
+                try {
                     hospital.getPatientAttenderNameByPatientId(sc.nextInt());
+                }catch (PatientAttenderNameNotFoundException e){
+                    e.printStackTrace();
+                }
                     break;
 
                 case 9: System.out.println("enter the patient id");
-                    hospital.getStreetNameByPatientId(sc.nextInt());
+                   try {
+                       hospital.getStreetNameByPatientId(sc.nextInt());
+                   }catch (StreetNameNotFoundException e){
+                       e.printStackTrace();
+                   }
                     break;
-
-
+                case 10:
+                    System.out.println("enter the patient id");
+                  try{
+                      hospital.getPatientById(sc.nextInt());
+                  }catch (PatientNotFoundException e){
+                      e.printStackTrace();
+                  }
+                    break;
             }
             System.out.println("do you want to continue :y/n");
             text=sc.next();
